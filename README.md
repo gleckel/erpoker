@@ -63,16 +63,26 @@ O sistema deve manter registros de rake gerado por agente semanal. O qual deve c
 
 ## Descrição das triggers necessárias: 
 
-Quando houver um lançamento de venda de fichas e o pagamento for realizado, atualizar o Valor total Vendido do usuario com o valor atual + o valor da venda. Caso a venda de fichas for realizada, e o pagamento não for feito no ato deve-se verificar se o usuario tem um limite de credito igual ou maior do que o da compra, e se tiver o limite de crédito do usuario deve diminuir e o saldo devedor aumentar e o valor total vendido deve ser atualizado.
-
-Quando houver um lançamento de pagamento deve-se atualizar o os campos de saldo devedor e limite de crédito do usuario. 
-
 Quando criar um relatório preencher automaticamente: 
 Rake Gerado no Periodo - Conforme datas selecionadas. 
 Compras do agente - Conforme datas selecionadas. Selecionar no usuario se há saldo devedor.
 Valor do pagamento: Pegar o rake gerado no periodo e compras do agente e realizar a subtração. Se o valor do rake gerado no periodo já realiza a conta e abate o valor jogado, se o valor do rake gerado for menor do que o saldo devedor o valor deve ficar negativo.Por fim deve ser atualizado o saldo devedor e o limite de crédito do usuario.
 
+# Feito:
+Quando houver um lançamento de venda de fichas e o pagamento for realizado, atualizar o Valor total Vendido do usuario com o valor atual + o valor da venda.
 
-## Descrição das regras de validação: 
+ 
+## A fazer na semana:
+### David:
+Atualmente quando um usuario esta DEVENDO e lança uma nova venda de fichas (PAGA) o saldo devedor e o limite de crédito permanece o mesmo, deve-se retirar o valor da venda do saldo devedor e do limite de crédito (caso o valor for maior, reduzir o saldo devedor e adicionar o resto em saldo total vendido).
 
-Quando houver uma venda de fichas deve verificar se o campo "forma de pagamento" estiver preenchido, deve-se preencher o campo "pago". 
+### Wed: 
+Adicionar em LancamentoBO.atualizaSaldoDevedor: Caso a venda de fichas for realizada, e o pagamento não for feito no ato deve-se verificar se o usuario tem um limite de credito igual ou maior do que o da compra.
+Feito em LancamentoBO.atualizaSaldoDevedor: Se tiver o limite de crédito do usuario deve diminuir e o saldo devedor aumentar.
+Regra de validação: Quando houver uma venda de fichas deve verificar se o campo "forma de pagamento" estiver preenchido, deve-se preencher o campo "pago".
+Tutorial regra de validação: https://trailhead.salesforce.com/pt-BR/content/learn/modules/point_click_business_logic/validation_rules
+
+
+
+
+
